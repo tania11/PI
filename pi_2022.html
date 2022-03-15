@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf8">
+  <meta name="author" content="John Doe">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Happy PI Day!!!!!!!!!!</h1>
+  <p>Pie value using Chudnovsky Algorithm:-----</p>
+  <label>Enter No of iterations:</label>
+  <input type="number" id="iterations" value="2" />
+  <button>Calculate PI</button>
+  <p>Your Pi value is: <span></span></p>
+</body>
+</html>
+<script>
+(function(){
+  document.querySelector('button').addEventListener('click', (e) => {
+    console.log(document.querySelector('#iterations').value);
+    document.querySelector('span').innerText = sum(document.querySelector('#iterations').value);
+  });
+  function sum(iterations) {
+      const A = 545140134;
+      const B = 13591409;
+      const C = 640320;
+      let sum = 0;
+      for(let i = 0; i <= iterations; i++) {
+        sum+= (Math.pow(-1,i) * factorial(6 * i) * ((A*i) + B))/
+        (factorial(3 * i) * Math.pow(factorial(i), 3) * Math.pow(C, ((3*i) + 1.5) ));
+      }
+      return 1/(sum * 12);
+  }
+    function factorial(n, memo = {}) {
+      if(n <= 1) {
+        return 1;
+      }
+      if(n in memo ) {
+        return memo[n];
+      }
+      memo[n] = n * factorial(n -1, memo);
+      return memo[n];
+  }
+})()
+</script>
